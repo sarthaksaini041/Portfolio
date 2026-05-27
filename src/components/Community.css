@@ -1,0 +1,77 @@
+#community {
+    position: relative;
+    z-index: 30;
+    background-color: #ffffff;
+    color: #0d0d0d;
+    padding: 150px 10%;
+}
+
+#community .section-num {
+    color: rgba(0, 0, 0, 0.04);
+}
+
+#community h2 {
+    font-size: 4rem;
+    margin-bottom: 60px;
+    font-weight: 800;
+}
+
+.community-content {
+    max-width: 800px;
+    margin-bottom: 80px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    position: relative;
+    padding-left: 40px;
+}
+
+.decorative-quote {
+    position: absolute;
+    top: -40px;
+    left: -20px;
+    font-size: 8rem;
+    color: rgba(255, 0, 0, 0.1);
+    font-family: var(--sans);
+    pointer-events: none;
+}
+
+.community-content strong {
+    color: var(--accent);
+}
+
+.community-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.member-chip {
+    padding: 10px 24px;
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    color: #0d0d0d;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    will-change: transform;
+}
+
+.member-chip.highlight {
+    border: 1px solid var(--accent);
+    color: var(--accent);
+}
+
+.member-chip:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    transform: scale(1.08) rotate(0deg) !important;
+    z-index: 5;
+}
+
+@media (max-width: 768px) {
+    #community { padding: 100px 5%; }
+    #community h2 { font-size: 3rem; }
+    .community-content { font-size: 1.2rem; }
+}

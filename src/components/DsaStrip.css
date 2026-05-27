@@ -1,0 +1,103 @@
+.data-spine-container {
+    width: 100%;
+    height: 120px;
+    background: #000;
+    position: relative;
+    overflow: hidden;
+    z-index: 25;
+    border-top: 1px solid var(--accent);
+    border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+}
+
+.spine-noise {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url("https://grainy-gradients.vercel.app/noise.svg");
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 2;
+    mix-blend-mode: overlay;
+}
+
+.marquee-layer {
+    position: absolute;
+    display: flex;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.marquee-group {
+    display: flex;
+    flex-shrink: 0;
+    gap: 40px;
+    padding-right: 40px;
+}
+
+.bg-layer {
+    opacity: 0.15;
+    font-size: 4rem;
+    font-family: var(--sans);
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--accent);
+    filter: blur(4px);
+    animation: scroll-left 60s linear infinite;
+    z-index: 1;
+}
+
+.main-layer {
+    z-index: 3;
+    animation: scroll-left 30s linear infinite;
+}
+
+.marquee-layer.paused {
+    animation-play-state: paused;
+}
+
+.data-point {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.1rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 10px 20px;
+    cursor: crosshair;
+    transition: color 0.3s ease;
+    display: inline-block;
+}
+
+.ghost-text {
+    padding: 0 40px;
+}
+
+.scanner-beam {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: var(--accent);
+    box-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent);
+    z-index: 4;
+    animation: scan 8s ease-in-out infinite;
+    opacity: 0.6;
+}
+
+@keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes scan {
+    0%, 100% { left: 0%; opacity: 0; }
+    10%, 90% { opacity: 0.6; }
+    50% { left: 100%; }
+}
+
+@media (max-width: 768px) {
+    .data-spine-container { height: 80px; }
+    .bg-layer { font-size: 2.5rem; }
+    .data-point { font-size: 0.8rem; }
+}

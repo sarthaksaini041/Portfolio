@@ -1,0 +1,153 @@
+:root {
+    --bg: #0d0d0d;
+    --accent: #ff0000;
+    --accent-glow: rgba(255, 0, 0, 0.2);
+    --text-main: #e0e0e0;
+    --text-dim: #a0a0a0;
+    --grid-line: rgba(255, 255, 255, 0.04);
+    --grid-dot: rgba(255, 0, 0, 0.15);
+    --sans: 'Space Grotesk', sans-serif;
+    --body: 'DM Sans', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text-main);
+    font-family: var(--body);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: var(--sans);
+    font-weight: 700;
+    text-transform: lowercase;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Custom Cursor */
+#cursor-dot {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+    transition: transform 0.2s ease;
+}
+
+#cursor-ring {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    mix-blend-mode: difference;
+}
+
+.cursor-hover #cursor-ring {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 0, 0, 0.15);
+    border-color: transparent;
+}
+
+.cursor-hover #cursor-dot {
+    transform: translate(-50%, -50%) scale(0);
+}
+
+/* Scroll Progress */
+#scroll-progress {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.05);
+    z-index: 10000;
+}
+
+#scroll-bar {
+    width: 0%;
+    height: 100%;
+    background: var(--accent);
+    position: relative;
+    box-shadow: 0 0 10px var(--accent);
+}
+
+#scroll-bar::after {
+    content: "";
+    position: absolute;
+    right: -2px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
+}
+
+section {
+    min-height: 100vh;
+    padding: 100px 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+/* Noise Texture */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url("https://grainy-gradients.vercel.app/noise.svg");
+    opacity: 0.06;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: overlay;
+}
+
+@media (max-width: 768px) {
+    * { cursor: auto !important; }
+    #cursor-dot, #cursor-ring, #scroll-progress { display: none; }
+    section { padding: 80px 5%; }
+}
+
+/* Preloader */
+.preloader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 20000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.preloader-svg {
+    width: 200px;
+    height: 200px;
+}
